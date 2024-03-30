@@ -1,10 +1,12 @@
-import cv2
-from simple_facerec import SimpleFacerec
-
-sfr = SimpleFacerec()
-sfr.load_encoding_images("Module-4/images/")
+from deepface import DeepFace
 
 def recognise(frame):
-    frame = cv2.imread(frame, cv2.IMREAD_COLOR)
-    face_locations, names = sfr.detect_known_faces(frame)
+    dfs = DeepFace.find(img_path = frame, db_path = "Module-4/known_faces",model_name="SFace",detector_backend="dlib",distance_metric="euclidean")
+    names=[]
+    for df in dfs:  
+        if df.shape[0]>0:
+            names.append(df.iloc[0].identity[21:-4])
+    print(names)
     return names
+
+
