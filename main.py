@@ -21,6 +21,7 @@ from traffic_light import traffic_lig
 
 sys.path.append('../')
 
+
 mode=0
 count = 0
 def cam():
